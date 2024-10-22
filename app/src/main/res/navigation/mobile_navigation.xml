@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.project.a65ddm_trabalho1.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.project.a65ddm_trabalho1.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_listar_medicamentos"
+        android:name="com.project.a65ddm_trabalho1.view.ListarMedicamentosFragment"
+        android:label="Listar Medicamentos"
+        tools:layout="@layout/fragment_listar_medicamentos" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.project.a65ddm_trabalho1.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_cadastrar_medicamento"
+        android:name="com.project.a65ddm_trabalho1.view.CadastrarMedicamentoFragment"
+        android:label="Cadastrar Medicamento"
+        tools:layout="@layout/fragment_cadastrar_medicamento" />
 </navigation>

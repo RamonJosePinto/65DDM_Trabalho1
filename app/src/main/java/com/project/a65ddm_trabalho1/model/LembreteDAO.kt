@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface LembreteDAO {
@@ -18,4 +19,7 @@ interface LembreteDAO {
 
     @Query("DELETE FROM lembretes WHERE id = :lembreteId")
     suspend fun deletarLembrete(lembreteId: Int)
+
+    @Update
+    suspend fun atualizarLembrete(lembrete: Lembrete)
 }

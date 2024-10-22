@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:elevation="2dp"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Hora do lembrete -->
+        <TextView
+            android:id="@+id/text_view_hora_lembrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Botão de edição -->
+        <ImageButton
+            android:id="@+id/button_editar_lembrete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icone_edit"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Editar Lembrete" />
+
+        <!-- Switch para ativar/desativar lembrete -->
+        <Switch
+            android:id="@+id/switch_ativar_lembrete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Descrição (dia ou data) -->
+    <TextView
+        android:id="@+id/text_view_descricao_lembrete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descrição"
+        android:textSize="16sp"
+        android:layout_marginTop="4dp" />
+</LinearLayout>

@@ -15,8 +15,8 @@ import com.project.a65ddm_trabalho1.viewModel.MedicamentoViewModel
 class CadastrarMedicamentoFragment : Fragment() {
 
     private lateinit var viewModel: MedicamentoViewModel
-    private lateinit var nomeMedicamento: EditText
-    private lateinit var dosagemMedicamento: EditText
+    private lateinit var nomeEditText: EditText
+    private lateinit var dosagemEditText: EditText
     private lateinit var botaoCadastrar: Button
 
     override fun onCreateView(
@@ -25,19 +25,29 @@ class CadastrarMedicamentoFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cadastrar_medicamento, container, false)
 
-        nomeMedicamento = view.findViewById(R.id.nome_medicamento)
-        dosagemMedicamento = view.findViewById(R.id.dosagem_medicamento)
+        // Inicialize os campos de texto e botão
+        nomeEditText = view.findViewById(R.id.nome_medicamento)
+        dosagemEditText = view.findViewById(R.id.dosagem_medicamento)
         botaoCadastrar = view.findViewById(R.id.botao_cadastrar)
 
+        // Conecte o ViewModel
         viewModel = ViewModelProvider(this).get(MedicamentoViewModel::class.java)
 
+        // Configura a ação do botão
         botaoCadastrar.setOnClickListener {
-            val nome = nomeMedicamento.text.toString()
-            val dosagem = dosagemMedicamento.text.toString()
-            viewModel.cadastrarMedicamento(nome, dosagem)
-            Toast.makeText(requireContext(), "Medicamento cadastrado", Toast.LENGTH_SHORT).show()
+            val nome = nomeEditText.text.toString()
+            val dosagem = dosagemEditText.text.toString()
+
+            // Chama a função de cadastrar medicamento do ViewModel
+            if (nome.isNotEmpty() && dosagem.isNotEmpty()) {
+                viewModel.cadastrarMedicamento(nome, dosagem)
+                Toast.makeText(requireContext(), "Medicamento cadastrado!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view
     }
 }
+
