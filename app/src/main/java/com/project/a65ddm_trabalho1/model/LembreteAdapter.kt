@@ -38,7 +38,7 @@ class LembreteAdapter(
             onEditClick: (Lembrete) -> Unit,
             onSwitchChange: (Lembrete, Boolean) -> Unit
         ) {
-            horaTextView.text = "06:20"
+            horaTextView.text = lembrete.dataLembrete.toString()
             descricaoTextView.text = lembrete.mensagem
             ativarSwitch.isChecked = true
 

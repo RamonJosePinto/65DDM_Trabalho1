@@ -1,6 +1,7 @@
 package com.project.a65ddm_trabalho1.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -31,6 +32,7 @@ class LembreteViewModel(application: Application) : AndroidViewModel(application
                 mensagem = mensagem,
                 repeticao = repeticao
             )
+            Log.d("TAG", "todos os lembretes: ${lembreteDAO.listarTodosLembretes()}")
             lembreteDAO.inserirLembrete(lembrete)
         }
     }
@@ -41,9 +43,9 @@ class LembreteViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun listarTodosLembretes(): LiveData<List<Lembrete>> {
-        return liveData {
-            emit(lembreteDAO.listarTodosLembretes())
+    fun listarTodosLembretes() {
+        viewModelScope.launch {
+            _lembretes.value = lembreteDAO.listarTodosLembretes()
         }
     }
 

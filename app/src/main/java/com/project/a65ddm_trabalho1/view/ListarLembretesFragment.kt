@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.project.a65ddm_trabalho1.R
+import com.project.a65ddm_trabalho1.model.Lembrete
 import com.project.a65ddm_trabalho1.model.LembreteAdapter
 import com.project.a65ddm_trabalho1.viewModel.LembreteViewModel
 
@@ -32,18 +33,20 @@ class ListarLembretesFragment : Fragment() {
 
         // Observar os lembretes e configurar o adaptador
         viewModel.lembretes.observe(viewLifecycleOwner) { lembretes ->
-            adapter = LembreteAdapter(lembretes,
-                onEditClick = { lembrete ->
-                    // Implementar a ação de editar
-                    Toast.makeText(requireContext(), "Editar ${lembrete.dataLembrete}", Toast.LENGTH_SHORT).show()
-                },
-                onSwitchChange = { lembrete, ativado ->
-                    // Atualizar o status do lembrete (ativado/desativado)
-//                    viewModel.ativarDesativarLembrete(lembrete, ativado)
-                    Toast.makeText(requireContext(), "Tentado mudar switch", Toast.LENGTH_SHORT).show()
-                }
-            )
-            recyclerView.adapter = adapter
+            if(lembretes != null) {
+                adapter = LembreteAdapter(lembretes,
+                    onEditClick = { lembrete ->
+                        // Implementar a ação de editar
+                        Toast.makeText(requireContext(), "Editar ${lembrete.dataLembrete}", Toast.LENGTH_SHORT).show()
+                    },
+                    onSwitchChange = { lembrete, ativado ->
+                        // Atualizar o status do lembrete (ativado/desativado)
+//                        viewModel.ativarDesativarLembrete(lembrete, ativado)
+                        Toast.makeText(requireContext(), "Tentado mudar switch", Toast.LENGTH_SHORT).show()
+                    }
+                )
+                recyclerView.adapter = adapter
+            }
         }
 
         return view

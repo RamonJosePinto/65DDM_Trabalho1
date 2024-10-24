@@ -22,4 +22,14 @@
         android:name="com.project.a65ddm_trabalho1.view.CadastrarMedicamentoFragment"
         android:label="Cadastrar Medicamento"
         tools:layout="@layout/fragment_cadastrar_medicamento" />
+    <fragment
+        android:id="@+id/navigation_cadastrar_lembrete"
+        android:name="com.project.a65ddm_trabalho1.view.CadastrarLembreteFragment"
+        android:label="Cadastrar Lembrete"
+        tools:layout="@layout/fragment_cadastrar_lembrete" />
+    <fragment
+        android:id="@+id/navigation_listar_lembretes"
+        android:name="com.project.a65ddm_trabalho1.view.ListarLembretesFragment"
+        android:label="Listar lembretes"
+        tools:layout="@layout/fragment_listar_lembretes" />
 </navigation>
