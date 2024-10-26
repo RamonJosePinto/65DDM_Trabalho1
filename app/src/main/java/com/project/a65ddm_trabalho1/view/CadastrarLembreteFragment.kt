@@ -15,6 +15,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.project.a65ddm_trabalho1.R
+import com.project.a65ddm_trabalho1.model.Lembrete
+import com.project.a65ddm_trabalho1.model.scheduleLembreteWork
 import com.project.a65ddm_trabalho1.viewModel.LembreteViewModel
 import com.project.a65ddm_trabalho1.viewModel.MedicamentoViewModel
 import java.text.SimpleDateFormat
@@ -85,6 +87,15 @@ class CadastrarLembreteFragment : Fragment() {
                 repeticao = tipoRepeticao
             )
 
+            val lembrete = Lembrete(
+                medicamentoId = obterIdMedicamentoPorNome(medicamentoSelecionado),
+                dataLembrete = selectedDateTime.timeInMillis,
+                mensagem = "Lembrete: $medicamentoSelecionado - $dosagem, Repetição: $tipoRepeticao",
+                repeticao = tipoRepeticao,
+                ativo = true
+            )
+
+            scheduleLembreteWork(requireContext().applicationContext, lembrete)
             Toast.makeText(requireContext(), "Lembrete cadastrado", Toast.LENGTH_SHORT).show()
         }
 
