@@ -8,6 +8,8 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.a65ddm_trabalho1.R
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class LembreteAdapter(
     private val lembretes: List<Lembrete>,
@@ -38,7 +40,9 @@ class LembreteAdapter(
             onEditClick: (Lembrete) -> Unit,
             onSwitchChange: (Lembrete, Boolean) -> Unit
         ) {
-            horaTextView.text = lembrete.dataLembrete.toString()
+            val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val horaFormatada = dateFormat.format(lembrete.getDate())
+            horaTextView.text = horaFormatada
             descricaoTextView.text = lembrete.mensagem
             ativarSwitch.isChecked = true
 

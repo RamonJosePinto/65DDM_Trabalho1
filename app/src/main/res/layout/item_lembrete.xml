@@ -30,7 +30,7 @@
             android:id="@+id/button_editar_lembrete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icone_edit"
+            android:src="@drawable/icone_edit_35dp"
             android:background="?android:attr/selectableItemBackground"
             android:contentDescription="Editar Lembrete" />
 
@@ -50,4 +50,10 @@
         android:text="Descrição"
         android:textSize="16sp"
         android:layout_marginTop="4dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="?actionBarDivider" />
 </LinearLayout>
