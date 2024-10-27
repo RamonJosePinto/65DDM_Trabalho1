@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Medicamento(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val nome: String,
-    val dosagem: String
+    val dosagem: String,
+    val fotoCaminho: String? = null  // Caminho da imagem no armazenamento
 )

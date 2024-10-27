@@ -21,14 +21,15 @@ class MedicamentoViewModel(application: Application) : AndroidViewModel(applicat
         listarMedicamentos()
     }
 
-    fun cadastrarMedicamento(nome: String, dosagem: String) {
+    fun cadastrarMedicamento(nome: String, dosagem: String, fotoCaminho: String?) {
         viewModelScope.launch {
-            val medicamento = Medicamento(nome = nome, dosagem = dosagem)
+            val medicamento = Medicamento(nome = nome, dosagem = dosagem, fotoCaminho = fotoCaminho)
             medicamentoDAO.inserir(medicamento)
             listarMedicamentos()
             Log.d("MedicamentoViewModel", "Medicamento cadastrado: $medicamento")
         }
     }
+
 
     fun listarMedicamentos() {
         viewModelScope.launch {

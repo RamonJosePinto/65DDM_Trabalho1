@@ -21,10 +21,34 @@
         android:inputType="text" />
 
     <Button
+        android:id="@+id/botao_abrir_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Capturar Imagem"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"/>
+
+    <ImageView
+        android:id="@+id/image_view_foto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="8dp"/>
+
+    <Button
         android:id="@+id/botao_cadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
         android:backgroundTint="@android:color/holo_green_dark"
         android:textColor="@android:color/white"/>
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"/>
+
 </LinearLayout>
