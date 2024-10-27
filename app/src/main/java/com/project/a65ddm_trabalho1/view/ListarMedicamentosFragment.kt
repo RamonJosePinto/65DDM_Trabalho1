@@ -1,5 +1,6 @@
 package com.project.a65ddm_trabalho1.view
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.project.a65ddm_trabalho1.R
@@ -31,25 +33,25 @@ class ListarMedicamentosFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(MedicamentoViewModel::class.java)
 
-//        // Observar os medicamentos e atualizar a lista
-//        viewModel.medicamentos.observe(viewLifecycleOwner) { medicamentos ->
-//            Log.d("TAG", "Medicamentos na lista: $medicamentos")
-//            adapter = MedicamentoAdapter(medicamentos,
-//                onEditClick = { medicamento ->
-//                    // Implementar ação de edição aqui
-//                    Toast.makeText(requireContext(), "Editar ${medicamento.nome}", Toast.LENGTH_SHORT).show()
-//                },
-//                onDeleteClick = { medicamento ->
-//                    // Implementar ação de deleção aqui
-//                    viewModel.deletarMedicamento(medicamento)
-//                    Toast.makeText(requireContext(), "Deletar ${medicamento.nome}", Toast.LENGTH_SHORT).show()
-//                })
-//            recyclerView.adapter = adapter
-//        }
 
+        val navController = findNavController()
         viewModel.medicamentos.observe(viewLifecycleOwner) { medicamentos ->
             if (medicamentos != null) {
-                adapter = MedicamentoAdapter(medicamentos, onEditClick = {}, onDeleteClick = {})
+                adapter = MedicamentoAdapter(medicamentos, onEditClick = {},
+                    onDeleteClick = { medicamento ->
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Deletar Medicamento")
+                            .setMessage("Você tem certeza que deseja deletar este medicamento?")
+                            .setPositiveButton("Sim") { _, _ ->
+                                viewModel.deletarMedicamento(medicamento)
+                            }
+                            .setNegativeButton("Não", null)
+                            .show()
+                    },
+                    onDetailClick = {medicamento ->
+                        val action = ListarMedicamentosFragmentDirections.actionListarMedicamentosFragmentToDetalhesMedicamentoFragment(medicamento)
+                        navController.navigate(action)
+                })
                 recyclerView.adapter = adapter
             }
         }

@@ -14,9 +14,11 @@
     <fragment
         android:id="@+id/navigation_listar_medicamentos"
         android:name="com.project.a65ddm_trabalho1.view.ListarMedicamentosFragment"
-        android:label="Listar Medicamentos"
-        tools:layout="@layout/fragment_listar_medicamentos" />
-
+        android:label="Listar Medicamentos">
+        <action
+            android:id="@+id/action_listarMedicamentosFragment_to_detalhesMedicamentoFragment"
+            app:destination="@id/detalhesMedicamentoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_cadastrar_medicamento"
         android:name="com.project.a65ddm_trabalho1.view.CadastrarMedicamentoFragment"
@@ -32,4 +34,13 @@
         android:name="com.project.a65ddm_trabalho1.view.ListarLembretesFragment"
         android:label="Listar lembretes"
         tools:layout="@layout/fragment_listar_lembretes" />
+    <fragment
+        android:id="@+id/detalhesMedicamentoFragment"
+        android:name="com.project.a65ddm_trabalho1.view.DetalhesMedicamentoFragment"
+        android:label="Detalhes do Medicamento">
+        <argument
+            android:name="medicamento"
+            app:argType="com.project.a65ddm_trabalho1.model.Medicamento" />
+    </fragment>
+
 </navigation>

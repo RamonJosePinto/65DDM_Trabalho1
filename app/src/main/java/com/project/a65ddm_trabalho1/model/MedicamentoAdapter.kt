@@ -11,7 +11,8 @@ import com.project.a65ddm_trabalho1.R
 class MedicamentoAdapter(
     private val medicamentos: List<Medicamento>,
     private val onEditClick: (Medicamento) -> Unit,
-    private val onDeleteClick: (Medicamento) -> Unit
+    private val onDeleteClick: (Medicamento) -> Unit,
+    private val onDetailClick: (Medicamento) -> Unit
 ) : RecyclerView.Adapter<MedicamentoAdapter.MedicamentoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicamentoViewHolder {
@@ -21,7 +22,7 @@ class MedicamentoAdapter(
 
     override fun onBindViewHolder(holder: MedicamentoViewHolder, position: Int) {
         val medicamento = medicamentos[position]
-        holder.bind(medicamento, onEditClick, onDeleteClick)
+        holder.bind(medicamento, onEditClick, onDeleteClick, onDetailClick)
     }
 
     override fun getItemCount(): Int = medicamentos.size
@@ -34,7 +35,8 @@ class MedicamentoAdapter(
         fun bind(
             medicamento: Medicamento,
             onEditClick: (Medicamento) -> Unit,
-            onDeleteClick: (Medicamento) -> Unit
+            onDeleteClick: (Medicamento) -> Unit,
+            onDetailClick: (Medicamento) -> Unit
         ) {
             nomeMedicamentoTextView.text = medicamento.nome
 
@@ -45,6 +47,8 @@ class MedicamentoAdapter(
             deletarButton.setOnClickListener {
                 onDeleteClick(medicamento)
             }
+
+            itemView.setOnClickListener{ onDetailClick(medicamento) }
         }
     }
 }

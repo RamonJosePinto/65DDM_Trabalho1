@@ -24,7 +24,9 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val NOTIFICATION_PERMISSION_CODE = 101
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(R.id.nav_host_fragment_activity_main).navigateUp() || super.onSupportNavigateUp()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
