@@ -34,6 +34,7 @@ class LembreteViewModel(application: Application) : AndroidViewModel(application
             )
             Log.d("TAG", "todos os lembretes: ${lembreteDAO.listarTodosLembretes()}")
             lembreteDAO.inserirLembrete(lembrete)
+            listarTodosLembretes()
         }
     }
 
@@ -48,6 +49,14 @@ class LembreteViewModel(application: Application) : AndroidViewModel(application
             _lembretes.value = lembreteDAO.listarTodosLembretes()
         }
     }
+
+    fun deletarLembrete(lembrete: Lembrete) {
+        viewModelScope.launch {
+            lembreteDAO.deletarLembrete(lembrete)
+            listarTodosLembretes() // Atualiza a lista após deletar
+        }
+    }
+
 
 //    fun ativarDesativarLembrete(lembrete: Lembrete, ativado: Boolean) {
 //        viewModelScope.launch {

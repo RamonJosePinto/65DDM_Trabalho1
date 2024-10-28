@@ -14,6 +14,7 @@ import java.util.Locale
 class LembreteAdapter(
     private val lembretes: List<Lembrete>,
     private val onEditClick: (Lembrete) -> Unit,
+    private val onDeleteClick: (Lembrete) -> Unit,
     private val onSwitchChange: (Lembrete, Boolean) -> Unit
 ) : RecyclerView.Adapter<LembreteAdapter.LembreteViewHolder>() {
 
@@ -24,7 +25,7 @@ class LembreteAdapter(
 
     override fun onBindViewHolder(holder: LembreteViewHolder, position: Int) {
         val lembrete = lembretes[position]
-        holder.bind(lembrete, onEditClick, onSwitchChange)
+        holder.bind(lembrete, onEditClick, onDeleteClick, onSwitchChange)
     }
 
     override fun getItemCount(): Int = lembretes.size
@@ -34,10 +35,12 @@ class LembreteAdapter(
         private val descricaoTextView: TextView = itemView.findViewById(R.id.text_view_descricao_lembrete)
         private val editarButton: ImageButton = itemView.findViewById(R.id.button_editar_lembrete)
         private val ativarSwitch: Switch = itemView.findViewById(R.id.switch_ativar_lembrete)
+        private val deletarButton: ImageButton = itemView.findViewById(R.id.button_deletar_lembrete)
 
         fun bind(
             lembrete: Lembrete,
             onEditClick: (Lembrete) -> Unit,
+            onDeleteClick: (Lembrete) -> Unit,
             onSwitchChange: (Lembrete, Boolean) -> Unit
         ) {
             val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -48,6 +51,10 @@ class LembreteAdapter(
 
             editarButton.setOnClickListener {
                 onEditClick(lembrete)
+            }
+
+            deletarButton.setOnClickListener {
+                onDeleteClick(lembrete)
             }
 
             ativarSwitch.setOnCheckedChangeListener { _, isChecked ->

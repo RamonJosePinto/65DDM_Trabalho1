@@ -1,6 +1,7 @@
 package com.project.a65ddm_trabalho1.model
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -17,8 +18,8 @@ interface LembreteDAO {
     @Query("SELECT * FROM lembretes")
     suspend fun listarTodosLembretes(): List<Lembrete>
 
-    @Query("DELETE FROM lembretes WHERE id = :lembreteId")
-    suspend fun deletarLembrete(lembreteId: Int)
+    @Delete
+    suspend fun deletarLembrete(lembrete: Lembrete)
 
     @Update
     suspend fun atualizarLembrete(lembrete: Lembrete)

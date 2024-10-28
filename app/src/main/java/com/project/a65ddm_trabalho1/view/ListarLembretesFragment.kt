@@ -39,6 +39,10 @@ class ListarLembretesFragment : Fragment() {
                         // Implementar a ação de editar
                         Toast.makeText(requireContext(), "Editar ${lembrete.dataLembrete}", Toast.LENGTH_SHORT).show()
                     },
+                    onDeleteClick = { lembrete ->
+                        viewModel.deletarLembrete(lembrete)
+                        Toast.makeText(requireContext(), "Lembrete deletado!", Toast.LENGTH_SHORT).show()
+                    },
                     onSwitchChange = { lembrete, ativado ->
                         // Atualizar o status do lembrete (ativado/desativado)
 //                        viewModel.ativarDesativarLembrete(lembrete, ativado)

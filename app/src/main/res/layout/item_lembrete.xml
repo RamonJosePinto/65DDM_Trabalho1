@@ -33,6 +33,16 @@
             android:src="@drawable/icone_edit_35dp"
             android:background="?android:attr/selectableItemBackground"
             android:contentDescription="Editar Lembrete" />
+        <!-- Botão de deletar -->
+        <ImageButton
+            android:id="@+id/button_deletar_lembrete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icone_delete_35dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Deletar Lembrete"
+            android:layout_marginStart="8dp"/>
+
 
         <!-- Switch para ativar/desativar lembrete -->
         <Switch
