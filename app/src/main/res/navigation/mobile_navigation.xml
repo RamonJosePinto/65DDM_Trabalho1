@@ -67,4 +67,10 @@
             app:argType="com.project.a65ddm_trabalho1.model.Medicamento" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_pesquisa_medicamento"
+        android:name="com.project.a65ddm_trabalho1.view.PesquisaMedicamentoFragment"
+        android:label="Pesquisar Medicamento"
+        tools:layout="@layout/fragment_pesquisa_medicamento_api" />
+
 </navigation>

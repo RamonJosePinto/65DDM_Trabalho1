@@ -1,6 +1,6 @@
 package com.project.a65ddm_trabalho1.model.api
 
-data class Medicamento(
+data class MedicamentoAPI(
     val idProduto: Int,
     val numeroRegistro: String,
     val nomeProduto: String,
@@ -15,10 +15,10 @@ data class Medicamento(
     val dataAtualizacao: String
 )
 
-data class ApiResponse(
-    val content: List<Medicamento>,
-    val totalPages: Int,
+data class RespostaAPI(
+    val content: List<MedicamentoAPI>,
     val totalElements: Int,
+    val totalPages: Int,
     val last: Boolean,
     val numberOfElements: Int,
     val first: Boolean,
