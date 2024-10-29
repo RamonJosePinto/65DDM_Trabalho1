@@ -18,6 +18,17 @@
         <action
             android:id="@+id/action_listarMedicamentosFragment_to_detalhesMedicamentoFragment"
             app:destination="@id/detalhesMedicamentoFragment" />
+        <action
+            android:id="@+id/action_listarMedicamentosFragment_to_editarMedicamentoFragment"
+            app:destination="@id/editarMedicamentoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarMedicamentoFragment"
+        android:name="com.project.a65ddm_trabalho1.view.EditarMedicamentoFragment"
+        android:label="Editar Medicamento">
+        <argument
+            android:name="medicamento"
+            app:argType="com.project.a65ddm_trabalho1.model.Medicamento" />
     </fragment>
     <fragment
         android:id="@+id/navigation_cadastrar_medicamento"
@@ -32,8 +43,21 @@
     <fragment
         android:id="@+id/navigation_listar_lembretes"
         android:name="com.project.a65ddm_trabalho1.view.ListarLembretesFragment"
-        android:label="Listar lembretes"
-        tools:layout="@layout/fragment_listar_lembretes" />
+        android:label="Listar Lembretes"
+        tools:layout="@layout/fragment_listar_lembretes">
+        <action
+            android:id="@+id/action_listarLembretesFragment_to_editarLembreteFragment"
+            app:destination="@id/editarLembreteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editarLembreteFragment"
+        android:name="com.project.a65ddm_trabalho1.view.EditarLembreteFragment"
+        android:label="Editar Lembrete">
+        <argument
+            android:name="lembrete"
+            app:argType="com.project.a65ddm_trabalho1.model.Lembrete" />
+    </fragment>
     <fragment
         android:id="@+id/detalhesMedicamentoFragment"
         android:name="com.project.a65ddm_trabalho1.view.DetalhesMedicamentoFragment"

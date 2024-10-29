@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface MedicamentoDAO {
@@ -16,4 +17,7 @@ interface MedicamentoDAO {
 
     @Delete
     suspend fun deletarMedicamento(medicamento: Medicamento)
+
+    @Update
+    suspend fun atualizarMedicamento(medicamento: Medicamento)
 }

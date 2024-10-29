@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.project.a65ddm_trabalho1.R
@@ -31,13 +32,15 @@ class ListarLembretesFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(LembreteViewModel::class.java)
 
+        val navController = findNavController()
+
         // Observar os lembretes e configurar o adaptador
         viewModel.lembretes.observe(viewLifecycleOwner) { lembretes ->
             if(lembretes != null) {
                 adapter = LembreteAdapter(lembretes,
                     onEditClick = { lembrete ->
-                        // Implementar a ação de editar
-                        Toast.makeText(requireContext(), "Editar ${lembrete.dataLembrete}", Toast.LENGTH_SHORT).show()
+                        val action = ListarLembretesFragmentDirections.actionListarLembretesFragmentToEditarLembreteFragment(lembrete)
+                        navController.navigate(action)
                     },
                     onDeleteClick = { lembrete ->
                         viewModel.deletarLembrete(lembrete)

@@ -1,0 +1,64 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Campo para horário -->
+    <EditText
+        android:id="@+id/edit_text_horario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Horário"
+        android:inputType="time" />
+
+    <!-- Spinner para selecionar o medicamento -->
+    <Spinner
+        android:id="@+id/spinner_medicamentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Campo para dosagem -->
+    <EditText
+        android:id="@+id/edit_text_dosagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dosagem"
+        android:inputType="text" />
+
+    <!-- Opções de repetição do lembrete -->
+    <RadioGroup
+        android:id="@+id/repeticao_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_todos_dias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Todos os dias" />
+
+        <RadioButton
+            android:id="@+id/radio_dias_semana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dias da semana" />
+
+        <RadioButton
+            android:id="@+id/radio_unica_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Somente uma vez" />
+    </RadioGroup>
+
+    <!-- Botão de atualizar -->
+    <Button
+        android:id="@+id/button_atualizar_lembrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atualizar"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white" />
+</LinearLayout>

@@ -1,10 +1,13 @@
 package com.project.a65ddm_trabalho1.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 import java.util.Calendar
 import java.util.Date
 
+@Parcelize
 @Entity(tableName = "lembretes")
 data class Lembrete(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
@@ -14,7 +17,7 @@ data class Lembrete(
     val repeticao: String, // Tipo de repetição (todos os dias, dia específico, etc.)
     val ativo: Boolean = true // Novo atributo para gerenciar a ativação/desativação de lembretes
 
-){
+): Parcelable{
     fun getCalendar(): Calendar {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = dataLembrete

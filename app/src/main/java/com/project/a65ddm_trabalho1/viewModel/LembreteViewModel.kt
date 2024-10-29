@@ -57,6 +57,13 @@ class LembreteViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun atualizarLembrete(lembrete: Lembrete) {
+        viewModelScope.launch {
+            lembreteDAO.atualizarLembrete(lembrete)
+            listarTodosLembretes() // Atualiza a lista após salvar
+        }
+    }
+
 
 //    fun ativarDesativarLembrete(lembrete: Lembrete, ativado: Boolean) {
 //        viewModelScope.launch {

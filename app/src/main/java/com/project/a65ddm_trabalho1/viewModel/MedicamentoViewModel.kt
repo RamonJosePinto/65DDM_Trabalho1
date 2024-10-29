@@ -45,4 +45,12 @@ class MedicamentoViewModel(application: Application) : AndroidViewModel(applicat
             listarMedicamentos() // Atualiza a lista após a deleção
         }
     }
+
+    fun atualizarMedicamento(medicamento: Medicamento) {
+        viewModelScope.launch {
+            medicamentoDAO.inserir(medicamento)  // Como `inserir` é definido com `REPLACE`, ele atualizará o medicamento
+            listarMedicamentos()  // Atualiza a lista para refletir a mudança
+        }
+    }
+
 }

@@ -37,7 +37,11 @@ class ListarMedicamentosFragment : Fragment() {
         val navController = findNavController()
         viewModel.medicamentos.observe(viewLifecycleOwner) { medicamentos ->
             if (medicamentos != null) {
-                adapter = MedicamentoAdapter(medicamentos, onEditClick = {},
+                adapter = MedicamentoAdapter(medicamentos,
+                    onEditClick = { medicamento ->
+                        val action = ListarMedicamentosFragmentDirections.actionListarMedicamentosFragmentToEditarMedicamentoFragment(medicamento)
+                        navController.navigate(action)
+                    },
                     onDeleteClick = { medicamento ->
                         AlertDialog.Builder(requireContext())
                             .setTitle("Deletar Medicamento")
