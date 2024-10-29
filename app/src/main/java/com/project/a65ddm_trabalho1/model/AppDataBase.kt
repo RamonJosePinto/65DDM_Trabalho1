@@ -21,7 +21,7 @@ abstract class AppDataBase : RoomDatabase() {
                     AppDataBase::class.java,
                     "medicamento_db"
                 )
-                    .fallbackToDestructiveMigration()  // Permite a migração destrutiva
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

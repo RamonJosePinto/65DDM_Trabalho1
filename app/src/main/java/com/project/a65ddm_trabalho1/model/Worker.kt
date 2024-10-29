@@ -19,13 +19,11 @@ class LembreteWorker(
         val lembreteId = inputData.getInt("LEMBRETE_ID", 0)
         val lembreteMensagem = inputData.getString("LEMBRETE_MENSAGEM") ?: "Lembrete"
 
-        // Verifica se a permissão foi concedida
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.POST_NOTIFICATIONS)
             != PackageManager.PERMISSION_GRANTED) {
             return Result.failure()
         }
 
-        // Configuração e exibição da notificação
         val builder = NotificationCompat.Builder(applicationContext, "LEMBRETE_CHANNEL_ID")
             .setSmallIcon(R.drawable.icone_edit)
             .setContentTitle("Hora do Lembrete!")

@@ -40,7 +40,6 @@ class CadastrarLembreteFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cadastrar_lembrete, container, false)
 
-        // Inicializa os componentes da interface
         horarioEditText = view.findViewById(R.id.edit_text_horario)
         dosagemEditText = view.findViewById(R.id.edit_text_dosagem)
         radioGroupRepeticao = view.findViewById(R.id.repeticao_group)
@@ -55,7 +54,6 @@ class CadastrarLembreteFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(LembreteViewModel::class.java)
         medicamentoViewModel = ViewModelProvider(this).get(MedicamentoViewModel::class.java)
 
-        // Carregar os medicamentos no Spinner
         medicamentoViewModel.medicamentos.observe(viewLifecycleOwner) { medicamentos ->
             val adapter = ArrayAdapter(
                 requireContext(),
@@ -66,7 +64,6 @@ class CadastrarLembreteFragment : Fragment() {
             spinnerMedicamentos.adapter = adapter
         }
 
-        // Lógica do botão de cadastro
         botaoCadastrar.setOnClickListener {
             val horario = horarioEditText.text.toString()
             val dosagem = dosagemEditText.text.toString()
@@ -79,10 +76,9 @@ class CadastrarLembreteFragment : Fragment() {
                 else -> "Nenhuma opção"
             }
 
-            // Chama o método do ViewModel para salvar o lembrete
             viewModel.cadastrarLembrete(
                 medicamentoId = obterIdMedicamentoPorNome(medicamentoSelecionado),
-                dataLembrete =  selectedDateTime.timeInMillis, // Exemplo de uso do timestamp atual
+                dataLembrete =  selectedDateTime.timeInMillis,
                 mensagem = "Lembrete: $medicamentoSelecionado - $dosagem, Repetição: $tipoRepeticao",
                 repeticao = tipoRepeticao
             )
@@ -103,21 +99,15 @@ class CadastrarLembreteFragment : Fragment() {
     }
 
     private fun showDateTimePicker() {
-        // Obtém a data atual para inicializar o DatePicker
         val currentDate = Calendar.getInstance()
 
-        // Exibe o DatePickerDialog para o usuário escolher a data
         DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->
-            // Define a data selecionada no Calendar
             selectedDateTime.set(year, month, dayOfMonth)
 
-            // Após selecionar a data, exibe o TimePickerDialog para o usuário escolher a hora
             TimePickerDialog(requireContext(), { _, hourOfDay, minute ->
-                // Define a hora e o minuto selecionados no Calendar
                 selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 selectedDateTime.set(Calendar.MINUTE, minute)
 
-                // Formata a data e a hora para exibição no campo de texto
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 horarioEditText.setText(dateFormat.format(selectedDateTime.time))
 
@@ -129,6 +119,6 @@ class CadastrarLembreteFragment : Fragment() {
 
     private fun obterIdMedicamentoPorNome(nome: String): Int {
         val medicamento = medicamentoViewModel.medicamentos.value?.find { it.nome == nome }
-        return medicamento?.id ?: 0 // Retorna o ID do medicamento ou 0 se não encontrado
+        return medicamento?.id ?: 0
     }
 }

@@ -155,7 +155,7 @@ class EditarMedicamentoFragment : Fragment() {
 
     private fun rotateBitmapFixed(bitmap: Bitmap): Bitmap {
         val matrix = Matrix()
-        matrix.postRotate(90f)  // Aplica uma rotação fixa de -90 graus
+        matrix.postRotate(90f)
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 }

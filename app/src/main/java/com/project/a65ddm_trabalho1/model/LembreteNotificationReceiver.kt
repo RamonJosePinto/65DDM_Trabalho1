@@ -14,17 +14,14 @@ import com.project.a65ddm_trabalho1.R
 class LembreteNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
 
-        // Verifica se a permissão de notificação foi concedida
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
             != PackageManager.PERMISSION_GRANTED) {
-            // Caso não tenha permissão, simplesmente retorna sem lançar a notificação
             return
         }
 
         val lembreteId = intent.getIntExtra("LEMBRETE_ID", 0)
         val lembreteMensagem = intent.getStringExtra("LEMBRETE_MENSAGEM") ?: "Lembrete"
         Log.d("LembreteNotificationReceiver", "Recebendo o alarme para o lembrete: $lembreteId")
-        // Configuração e exibição da notificação
         val builder = NotificationCompat.Builder(context, "LEMBRETE_CHANNEL_ID")
             .setSmallIcon(R.drawable.icone_edit)
             .setContentTitle("Hora do Lembrete!")

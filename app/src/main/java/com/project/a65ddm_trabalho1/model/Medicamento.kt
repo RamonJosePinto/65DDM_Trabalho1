@@ -11,5 +11,5 @@ data class Medicamento(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val nome: String,
     val dosagem: String,
-    val fotoCaminho: String? = null  // Caminho da foto
+    val fotoCaminho: String? = null
 ) : Parcelable

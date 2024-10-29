@@ -54,7 +54,6 @@ class CadastrarMedicamentoFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cadastrar_medicamento, container, false)
 
-        // Inicialize os campos de texto e botão
         nomeEditText = view.findViewById(R.id.nome_medicamento)
         dosagemEditText = view.findViewById(R.id.dosagem_medicamento)
         botaoCadastrar = view.findViewById(R.id.botao_cadastrar)
@@ -62,10 +61,8 @@ class CadastrarMedicamentoFragment : Fragment() {
         imageViewFoto = view.findViewById(R.id.image_view_foto)
         previewView = view.findViewById(R.id.preview_view)
 
-
         startCamera()
 
-        // Conecte o ViewModel
         viewModel = ViewModelProvider(this).get(MedicamentoViewModel::class.java)
 
         if (!allPermissionsGranted()) {
@@ -76,12 +73,10 @@ class CadastrarMedicamentoFragment : Fragment() {
             takePhoto()
         }
 
-        // Configura a ação do botão
         botaoCadastrar.setOnClickListener {
             val nome = nomeEditText.text.toString()
             val dosagem = dosagemEditText.text.toString()
 
-            // Chama a função de cadastrar medicamento do ViewModel
             if (nome.isNotEmpty() && dosagem.isNotEmpty()) {
                 viewModel.cadastrarMedicamento(nome, dosagem, currentPhotoPath)
                 Toast.makeText(requireContext(), "Medicamento cadastrado!", Toast.LENGTH_SHORT).show()
@@ -103,15 +98,15 @@ class CadastrarMedicamentoFragment : Fragment() {
                 it.setSurfaceProvider(previewView.surfaceProvider)
             }
             imageCapture = ImageCapture.Builder()
-                .setTargetAspectRatio(AspectRatio.RATIO_4_3)  // Define a proporção 4:3, que é próxima a 2:3
+                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
                 .build()
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
-                previewView.visibility = View.VISIBLE  // Torna a visualização da câmera visível
-                imageViewFoto.visibility = View.GONE  // Oculta a imagem capturada
+                previewView.visibility = View.VISIBLE
+                imageViewFoto.visibility = View.GONE
             } catch (exc: Exception) {
                 Log.e("CameraXApp", "Erro ao inicializar a câmera: ${exc.message}", exc)
             }
@@ -138,17 +133,15 @@ class CadastrarMedicamentoFragment : Fragment() {
                     imageViewFoto.visibility = View.VISIBLE
                     previewView.visibility = View.GONE
 
-                    // Salva o bitmap no armazenamento externo e armazena o caminho
                     currentPhotoPath = saveBitmapToExternalStorage(rotatedBitmap) ?: ""
                 }
             }
         )
     }
 
-    // Função para rotacionar o bitmap em -90 graus
     private fun rotateBitmapFixed(bitmap: Bitmap): Bitmap {
         val matrix = Matrix()
-        matrix.postRotate(90f)  // Aplica uma rotação fixa de -90 graus
+        matrix.postRotate(90f)
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
@@ -165,16 +158,16 @@ class CadastrarMedicamentoFragment : Fragment() {
         val photoDir = File(context.getExternalFilesDir(null), "medicamento_fotos")
 
         if (!photoDir.exists()) {
-            photoDir.mkdirs() // Cria o diretório se não existir
+            photoDir.mkdirs()
         }
 
         val photoFile = File(photoDir, "medicamento_${System.currentTimeMillis()}.jpg")
         return try {
             val outputStream = FileOutputStream(photoFile)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream) // Ajuste a qualidade conforme necessário
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
             outputStream.flush()
             outputStream.close()
-            photoFile.absolutePath // Retorna o caminho completo do arquivo
+            photoFile.absolutePath 
         } catch (e: Exception) {
             e.printStackTrace()
             null

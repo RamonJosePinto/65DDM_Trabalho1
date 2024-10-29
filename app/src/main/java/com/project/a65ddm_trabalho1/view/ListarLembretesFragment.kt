@@ -34,7 +34,6 @@ class ListarLembretesFragment : Fragment() {
 
         val navController = findNavController()
 
-        // Observar os lembretes e configurar o adaptador
         viewModel.lembretes.observe(viewLifecycleOwner) { lembretes ->
             if(lembretes != null) {
                 adapter = LembreteAdapter(lembretes,
@@ -47,7 +46,6 @@ class ListarLembretesFragment : Fragment() {
                         Toast.makeText(requireContext(), "Lembrete deletado!", Toast.LENGTH_SHORT).show()
                     },
                     onSwitchChange = { lembrete, ativado ->
-                        // Atualizar o status do lembrete (ativado/desativado)
 //                        viewModel.ativarDesativarLembrete(lembrete, ativado)
                         Toast.makeText(requireContext(), "Tentado mudar switch", Toast.LENGTH_SHORT).show()
                     }

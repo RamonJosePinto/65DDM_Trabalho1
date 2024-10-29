@@ -80,7 +80,7 @@ class PesquisaMedicamentoFragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<RespostaAPI>, t: Throwable) { // Update Call type
+                override fun onFailure(call: Call<RespostaAPI>, t: Throwable) {
                     System.out.println(t.toString());
                     Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_LONG).show()
                 }

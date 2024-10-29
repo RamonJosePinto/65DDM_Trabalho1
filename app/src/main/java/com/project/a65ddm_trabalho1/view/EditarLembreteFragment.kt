@@ -43,7 +43,6 @@ class EditarLembreteFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_editar_lembrete, container, false)
 
-        // Inicializa os componentes
         horarioEditText = view.findViewById(R.id.edit_text_horario)
         dosagemEditText = view.findViewById(R.id.edit_text_dosagem)
         radioGroupRepeticao = view.findViewById(R.id.repeticao_group)
@@ -53,15 +52,12 @@ class EditarLembreteFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(LembreteViewModel::class.java)
         medicamentoViewModel = ViewModelProvider(this).get(MedicamentoViewModel::class.java)
 
-        // Carregar dados do lembrete e medicamentos
         lembrete = args.lembrete
         selectedDateTime = lembrete.getCalendar()
         setupMedicamentosSpinner(lembrete.medicamentoId)
 
-        // Exibir dados do lembrete
         displayLembreteData()
 
-        // Configurar DatePicker e TimePicker
         horarioEditText.setOnClickListener { showDateTimePicker() }
 
         botaoAtualizar.setOnClickListener { atualizarLembrete() }
@@ -79,7 +75,6 @@ class EditarLembreteFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerMedicamentos.adapter = adapter
 
-            // Selecionar o medicamento atual
             val selectedIndex = medicamentos.indexOfFirst { it.id == selectedMedicamentoId }
             if (selectedIndex >= 0) {
                 spinnerMedicamentos.setSelection(selectedIndex)
@@ -88,11 +83,9 @@ class EditarLembreteFragment : Fragment() {
     }
 
     private fun displayLembreteData() {
-        // Exibe data e hora formatadas no EditText
         val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
         horarioEditText.setText(dateFormat.format(selectedDateTime.time))
 
-        // Exibe a mensagem e repetição
         dosagemEditText.setText(lembrete.mensagem)
         when (lembrete.repeticao) {
             "Todos os dias" -> radioGroupRepeticao.check(R.id.radio_todos_dias)
